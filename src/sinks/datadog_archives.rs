@@ -30,7 +30,6 @@ use crate::{
                 build_healthcheck, create_client, S3CannedAcl, S3RetryLogic,
                 S3ServerSideEncryption, S3StorageClass,
             },
-            partitioner::KeyPartitioner,
             service::{S3Request, S3Service},
             sink::S3Sink,
         },
@@ -42,6 +41,7 @@ use crate::{
 };
 
 use super::util::{encoding::Encoder, Compression, RequestBuilder};
+use crate::sinks::util::partitioner::KeyPartitioner;
 
 const DEFAULT_REQUEST_LIMITS: TowerRequestConfig = {
     TowerRequestConfig::const_new(Concurrency::Fixed(50), Concurrency::Fixed(50))
